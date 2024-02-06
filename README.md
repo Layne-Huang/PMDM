@@ -53,3 +53,8 @@ conda env create -f evaluation/env_adt.yml
 # Activate the environment
 conda activate adt
 ```
+### Pre-trained models
+The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/record/8183747).
+
+## Benchmarks
+### CrossDocked
