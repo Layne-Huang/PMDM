@@ -1,0 +1,72 @@
+model:
+  type: diffusion # dsm and diffusion
+  network: MDM_full_pocket_coor_shared #MDM_global_pocket
+  hidden_dim: 128
+  protein_hidden_dim: 128
+  num_convs: 3
+  num_convs_local: 3
+  protein_num_convs: 2
+  cutoff: 3.0
+  g_cutoff: 6.0
+  encoder_cutoff: 6.0
+  time_emb: True
+  atom_num_emb: False
+  mlp_act: relu
+  beta_schedule: sigmoid
+  beta_start: 1.e-7
+  beta_end: 2.e-3
+  num_diffusion_timesteps: 1000
+  edge_order: 3
+  edge_encoder: mlp
+  smooth_conv: False
+  num_layer: 9
+  feats_dim: 5
+  soft_edge: True
+  norm_coors: True
+  m_dim: 128
+  context: None
+  vae_context: False
+  num_atom: 10 # atom type 8: feature 8
+  protein_feature_dim: 31 # 10 27
+
+train:
+  seed: 2021
+  batch_size: 16
+  val_freq: 1
+  max_iters: 200
+  max_grad_norm: 10.0
+  num_workers: 4
+  anneal_power: 2.0
+  optimizer:
+    type: adam
+    lr: 1.e-5
+    weight_decay: 0.
+    beta1: 0.95
+    beta2: 0.999
+  scheduler:
+    type: plateau
+    factor: 0.6
+    patience: 10
+    min_lr: 1.e-7
+  transform:
+    mask:
+      type: mixed
+      min_ratio: 0.0
+      max_ratio: 1.2
+      min_num_masked: 1
+      min_num_unmasked: 0
+      p_random: 0.5
+      p_bfs: 0.25
+      p_invbfs: 0.25
+    contrastive:
+      num_real: 50
+      num_fake: 50
+      pos_real_std: 0.05
+      pos_fake_std: 2.0
+
+dataset:
+  name: pdbind
+  type: pl
+  path: ./data/pdbind
+  split: ./data/pdbind_split_by_name.pt
+
