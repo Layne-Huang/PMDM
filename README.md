@@ -10,9 +10,10 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 
 <div style="text-align: align="center">  
 <img src="img/model.png" width="600">
+</div>
+<div style="text-align: align="center"> 
 <img src="img/traj.gif" alt="GIF" width="200"style="display: block; margin-top: 20px;">
 </div>
-
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
    2. [QuickVina 2](#quickvina-2)
