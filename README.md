@@ -76,3 +76,15 @@ Resuming a previous run:
 python -u train.py --config <configure file path>
 ```
 The config argument should be the upper path of the configure file.
+
+## Inference
+### Sample molecules for all pockets in the test set
+```bash
+python -u sample_batch.py --ckpt <checkpoint> --num_samples <number of samples> --sampling_type generalized
+```
+
+### Sample molecules given customized pockets
+```bash
+python -u sample_for_pdb.py --ckpt <checkpoint> --pdb_path <pdb path> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
+```
+`num_atom` is the number of atoms of generated molecules.
