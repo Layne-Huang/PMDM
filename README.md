@@ -125,7 +125,7 @@ python -u evaluate --path <molecule_path>
 If you want to evaluate a single molecule, use `evaluate_single.py`.
 
 ### QuickVina2
-First, convert all protein PDB files to PDBQT files using adt envrionment
+First, convert all protein PDB files to PDBQT files using adt envrionment.
 ```bash
 conda activate adt
 prepare_receptor4.py -r {} -o {}
@@ -137,7 +137,7 @@ conda deactivate
 conda activate mol
 python docking_2_single.py --receptor_file <prepapre_receptor4_outdir> --sdf_file <sdf file> --out_dir <qvina_outdir>
 ```
-
+!!! You have to replace the path of your own mol and adt environment paths with the path in the scripts already.
 ### Citation
 ```
 @article {Huang2023.01.28.526011,
