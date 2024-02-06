@@ -10,7 +10,7 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 
 <div  align="center">  
 <img src="img/model.png" width="600",style="float: left;">
-<img src="img/traj.gif" alt="GIF" width="200" style="margin-left: 20px;">
+<img src="img/traj.gif" alt="GIF" width="200">
 </div>
 
 1. [Dependencies](#dependencies)
