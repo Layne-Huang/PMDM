@@ -2,8 +2,7 @@
 
 Official implementation of **PMDM**, an equivariant model for A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets, by Lei Huang
 
-[![arXiv](https://img.shields.io/badge/arXiv-2210.13695-B31B1B.svg)](http://arxiv.org/abs/2210.13695)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/arneschneuing/DiffSBDD/blob/main/colab/DiffSBDD.ipynb)
+[![biorxiv](https://img.shields.io/badge/arXiv-2210.13695-B31B1B.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
 
 ![](img/overview.png)
 
