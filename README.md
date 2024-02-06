@@ -121,4 +121,33 @@ python -u evaluate --path <molecule_path>
 
 If you want to evaluate a single molecule, use `evaluate_single.py`.
 
+### QuickVina2
+First, convert all protein PDB files to PDBQT files using adt envrionment
+```bash
+conda activate adt
+prepare_receptor4.py -r {} -o {}
+cd evaluation
+```
+Then, compute QuickVina scores:
+```bash
+conda deactivate
+conda activate mol
+python docking_2_single.py --receptor_file <prepapre_receptor4_outdir> --sdf_file <sdf file> --out_dir <qvina_outdir>
+```
+
+### Citation
+@article {Huang2023.01.28.526011,
+	author = {Lei Huang and Tingyang Xu and Yang Yu and Peilin Zhao and Ka-Chun Wong and Hengtong Zhang},
+	title = {A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets},
+	elocation-id = {2023.01.28.526011},
+	year = {2023},
+	doi = {10.1101/2023.01.28.526011},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2023/01/30/2023.01.28.526011},
+	eprint = {https://www.biorxiv.org/content/early/2023/01/30/2023.01.28.526011.full.pdf},
+	journal = {bioRxiv}
+}
+
+
+
 
