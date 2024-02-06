@@ -8,11 +8,11 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 
 [![biorxiv](https://img.shields.io/badge/biorxiv-526011-AE353A.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
 
-<div style="text-align: align="center">  
+<div align="center">  
 <img src="img/model.png" width="600">
 </div>
-<div style="text-align: align="center"> 
-<img src="img/traj.gif" alt="GIF" width="200"style="display: block; margin-top: 20px;">
+<div align="center"> 
+<img src="img/traj.gif" alt="GIF" width="200">
 </div>
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
