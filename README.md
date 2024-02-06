@@ -83,8 +83,14 @@ The config argument should be the upper path of the configure file.
 python -u sample_batch.py --ckpt <checkpoint> --num_samples <number of samples> --sampling_type generalized
 ```
 
-### Sample molecules given customized pockets
+### Sample molecules for given customized pockets
 ```bash
 python -u sample_for_pdb.py --ckpt <checkpoint> --pdb_path <pdb path> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
 ```
 `num_atom` is the number of atoms of generated molecules.
+
+### Sample novel molecules given seed fragments
+```bash
+python -u sample_frag.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file <mole file> --keep_index <seed fragments index> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
+```
+`num_atom` is the number of atoms of generated fragments. `keep_index` is the index of the atoms of the seed fragments.
