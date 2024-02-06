@@ -4,7 +4,9 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 
 [![biorxiv](https://img.shields.io/badge/biorxiv-526011-AE353A.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
 
+<div  align="center">  
 <img src="img/model.png" width="800">
+</div>
 
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
