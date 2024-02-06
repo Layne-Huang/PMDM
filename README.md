@@ -33,3 +33,16 @@ conda env create -f mol.yml
 # Activate the environment
 conda activate mol
 ```
+### QuickVina 2
+For docking, install QuickVina 2:
+```bash
+wget https://github.com/QVina/qvina/raw/master/bin/qvina2.1
+chmod +x qvina2.1
+
+Preparing the receptor for docking (pdb -> pdbqt) requires a new environment which is based on python 2x, so we should create a new environment:
+```bash
+# Clone the environment
+conda env create -f evaluation/env_adt.yml
+# Activate the environment
+conda activate adt
+```
