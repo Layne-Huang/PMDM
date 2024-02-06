@@ -8,6 +8,11 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 <img src="img/model.png" width="600">
 </div>
 
+## 📢 News
+
+- Our paper is accepted by **Nature Communications** !!
+
+
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
    2. [QuickVina 2](#quickvina-2)
