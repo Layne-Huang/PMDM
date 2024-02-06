@@ -22,3 +22,14 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
    4. [Metrics](#metrics)
    5. [QuickVina2](#quickvina2)
 6. [Citation](#citation)
+
+## Dependencies
+
+### Conda environment
+Please use our environment file to install the environment.
+```bash
+# Clone the environment
+conda env create -f mol.yml
+# Activate the environment
+conda activate mol
+```
