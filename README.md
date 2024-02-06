@@ -58,3 +58,20 @@ The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/reco
 
 ## Benchmarks
 ### CrossDocked
+
+#### Data preparation
+Download and extract the dataset as described by the authors of Pocket2Mol: https://github.com/pengxingang/Pocket2Mol/tree/main/data
+
+## Training
+We provide two training scripts **train.py** and **train_ddp_op.py** for single-GPU training and multi-GPU training.
+
+Starting a new training run:
+```bash
+python -u train.py --config <config>.yml
+```
+The example configure file is in `configs/crossdock_epoch.yml`
+
+Resuming a previous run:
+```bash
+python -u train.py --config <config>.yml --resume <checkpoint>.ckpt
+```
