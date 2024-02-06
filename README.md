@@ -136,6 +136,7 @@ python docking_2_single.py --receptor_file <prepapre_receptor4_outdir> --sdf_fil
 ```
 
 ### Citation
+```
 @article {Huang2023.01.28.526011,
 	author = {Lei Huang and Tingyang Xu and Yang Yu and Peilin Zhao and Ka-Chun Wong and Hengtong Zhang},
 	title = {A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets},
@@ -147,6 +148,7 @@ python docking_2_single.py --receptor_file <prepapre_receptor4_outdir> --sdf_fil
 	eprint = {https://www.biorxiv.org/content/early/2023/01/30/2023.01.28.526011.full.pdf},
 	journal = {bioRxiv}
 }
+```
 
 
 
