@@ -62,6 +62,18 @@ The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/reco
 #### Data preparation
 Download and extract the dataset as described by the authors of Pocket2Mol: https://github.com/pengxingang/Pocket2Mol/tree/main/data
 
+### Binding MOAD
+#### Data preparation
+Download the dataset
+```bash
+wget http://www.bindingmoad.org/files/biou/every_part_a.zip
+wget http://www.bindingmoad.org/files/biou/every_part_b.zip
+wget http://www.bindingmoad.org/files/csv/every.csv
+
+unzip every_part_a.zip
+unzip every_part_b.zip
+```
+
 ## Training
 We provide two training scripts **train.py** and **train_ddp_op.py** for single-GPU training and multi-GPU training.
 
@@ -94,3 +106,19 @@ python -u sample_for_pdb.py --ckpt <checkpoint> --pdb_path <pdb path> --num_atom
 python -u sample_frag.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file <mole file> --keep_index <seed fragments index> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
 ```
 `num_atom` is the number of atoms of generated fragments. `keep_index` is the index of the atoms of the seed fragments.
+
+### Sample novel molecules for linker 
+```bash
+python -u sample_linker.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file <mole file> --keep_index <seed fragments index> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
+```
+`num_atom` is the number of atoms of generated fragments. `mask` is the index of the linker that you would like to replace in the original molecule.
+
+### Metrics
+Evaluate the batch of generated molecules (You need to turn on the `save_results` arguments in sample* scripts)
+```bash
+python -u evaluate --path <molecule_path>
+```
+
+If you want to evaluate a single molecule, use `evaluate_single.py`.
+
+
