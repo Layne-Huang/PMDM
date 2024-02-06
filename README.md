@@ -9,7 +9,7 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 [![biorxiv](https://img.shields.io/badge/biorxiv-526011-AE353A.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
 
 <div  align="center">  
-<img src="img/model.png" width="600",style="float: left;">
+<img src="img/model.png" width="600",style="margin-bottom: 20px;">
 <img src="img/traj.gif" alt="GIF" width="200">
 </div>
 
