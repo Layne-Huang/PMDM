@@ -14,6 +14,7 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 <div align="center"> 
 <img src="img/traj.gif" alt="GIF" width="400">
 </div>
+
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
    2. [QuickVina 2](#quickvina-2)
