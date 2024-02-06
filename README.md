@@ -1,17 +1,16 @@
 # PMDM: A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets
 
-Official implementation of **PMDM**, an equivariant model for A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets, by Lei Huang
+Official implementation of **PMDM**, an equivariant model for A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets, by Lei Huang.
+
+## 📢 News
+
+- Our paper is accepted by **Nature Communications** !!
 
 [![biorxiv](https://img.shields.io/badge/biorxiv-526011-AE353A.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
 
 <div  align="center">  
 <img src="img/model.png" width="600">
 </div>
-
-## 📢 News
-
-- Our paper is accepted by **Nature Communications** !!
-
 
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
@@ -20,7 +19,6 @@ Official implementation of **PMDM**, an equivariant model for A dual diffusion m
 2. [Benchmarks](#benchmarks)
    1. [CrossDocked Benchmark](#crossdocked)
    2. [Binding MOAD](#binding-moad)
-   3. [Sampled molecules](#sampled-molecules)
 4. [Training](#training)
 5. [Inference](#inference)
    1. [Sample molecules for a given pocket](#sample-molecules-for-a-given-pocket)
