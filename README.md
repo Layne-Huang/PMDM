@@ -73,5 +73,6 @@ The example configure file is in `configs/crossdock_epoch.yml`
 
 Resuming a previous run:
 ```bash
-python -u train.py --config <config>.yml --resume <checkpoint>.ckpt
+python -u train.py --config <configure file path>
 ```
+The config argument should be the upper path of the configure file.
