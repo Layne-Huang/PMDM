@@ -24,12 +24,11 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
    2. [Binding MOAD](#binding-moad)
 4. [Training](#training)
 5. [Inference](#inference)
-   1. [Sample molecules for a given pocket](#sample-molecules-for-a-given-pocket)
-   2. [Test set sampling](#sample-molecules-for-all-pockets-in-the-test-set)
-   3. [Fix substructures](#fix-substructures)
-   4. [Metrics](#metrics)
-   5. [QuickVina2](#quickvina2)
-6. [Citation](#citation)
+   1. [Test set sampling](#sample-molecules-for-all-pockets-in-the-test-set)
+   2. [Sample molecules for a given pocket](#sample-molecules-for-a-given-pocket) 
+   3. [Metrics](#metrics)
+   4. [QuickVina2](#quickvina2)
+7. [Citation](#citation)
 
 ## Dependencies
 
