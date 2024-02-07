@@ -57,13 +57,13 @@ conda env create -f evaluation/env_adt.yml
 conda activate adt
 ```
 ### Pre-trained models
-The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/records/10627562).
+The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/records/10630921).
 
 ## Benchmarks
 ### CrossDocked
 
 #### Data preparation
-Download and extract the dataset as described by the authors of Pocket2Mol: https://github.com/pengxingang/Pocket2Mol/tree/main/data.
+Download and extract the dataset is provided in [Zenodo](https://zenodo.org/records/10630921)
 The original CrossDocked dataset can be found at https://bits.csb.pitt.edu/files/crossdock2020/
 
 ### Binding MOAD
