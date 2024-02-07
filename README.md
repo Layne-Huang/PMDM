@@ -49,7 +49,7 @@ wget https://github.com/QVina/qvina/raw/master/bin/qvina2.1
 chmod +x qvina2.1
 ```
 
-Preparing the receptor for docking (pdb -> pdbqt) requires a new environment which is based on python 2x, so we should create a new environment:
+Preparing the receptor for docking (pdb -> pdbqt) requires a new environment which is based on python 2x, so we need to create a new environment:
 ```bash
 # Clone the environment
 conda env create -f evaluation/env_adt.yml
@@ -63,7 +63,8 @@ The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/reco
 ### CrossDocked
 
 #### Data preparation
-Download and extract the dataset as described by the authors of Pocket2Mol: https://github.com/pengxingang/Pocket2Mol/tree/main/data
+Download and extract the dataset as described by the authors of Pocket2Mol: https://github.com/pengxingang/Pocket2Mol/tree/main/data.
+The original CrossDocked dataset can be found at https://bits.csb.pitt.edu/files/crossdock2020/
 
 ### Binding MOAD
 #### Data preparation
