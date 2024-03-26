@@ -46,8 +46,8 @@ def save_sdf(mol, sdf_dir, gen_file_name):
     writer.close()
 
 def parse_sdf_file(path):
-    # 导入一个特征库，创建一个特征工厂，并通过特征工厂计算化学特征
-    # 计算环信息
+    # Import a feature library, create a feature factory, and calculate chemical features using the feature factory
+    # Calculate ring information
     
     
     fdefName = os.path.join(RDConfig.RDDataDir, 'BaseFeatures.fdef')
@@ -59,12 +59,13 @@ def parse_sdf_file(path):
     feat_mat = np.zeros([rd_num_atoms, len(ATOM_FAMILIES)], dtype=np.long)
 
     '''
-    搜索到的每个特征都包含了该特征家族（例如供体、受体等）、特征类别、该特征对应的原子、特征对应序号等信息。
+    Each feature found contains information about the feature family 
+    (e.g., donor, acceptor), feature type, atoms associated with the feature, and the corresponding feature index.
 
-    特征家族信息：GetFamily()
-    特征类型信息：GetType()
-    特征对应原子：GetAtomIds()
-    特征对应序号：GetId()
+    Feature family information: GetFamily()
+    Feature type information: GetType()
+    Atoms associated with the feature: GetAtomIds()
+    Corresponding feature index: GetId()
     '''
     for feat in factory.GetFeaturesForMol(rdmol):
         feat_mat[feat.GetAtomIds(), ATOM_FAMILIES_ID[feat.GetFamily()]] = 1
