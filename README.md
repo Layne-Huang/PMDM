@@ -4,7 +4,7 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
 
 ## 📢 News
 
-- Our paper is accepted by **Nature Communications** !!
+- Our paper is accepted by **Nature Communications** !! (https://doi.org/10.1038/s41467-024-46569-1)
 
 [![biorxiv](https://img.shields.io/badge/biorxiv-526011-AE353A.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
 [![DOI](https://zenodo.org/badge/753795380.svg)](https://zenodo.org/doi/10.5281/zenodo.10631313)
