@@ -297,7 +297,6 @@ if __name__ == '__main__':
     logger.info('Building model...')
     logger.info(config.model['network'])
     print(config.model)
-    config.model.network = 'MDM_full_pocket_coor_conformation'
     model = get_model(config.model).to(device)
 
     model.load_state_dict(ckpt['model'])
