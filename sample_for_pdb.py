@@ -287,7 +287,7 @@ if __name__ == '__main__':
     ])
     # # Data
 
-    data = pdb_to_pocket_data(args.pdb_path, args.sdf_file)
+    data = pdb_to_pocket_data(args.pdb_path, args.sdf_path)
     data = transform(data)
     ligand_data = data.ligand_atom_feature, data.ligand_atom_feature_full, data.ligand_pos, data.ligand_bond_index, data.ligand_bond_type,\
                 data.ligand_edge_index, data.ligand_edge_type
