@@ -195,6 +195,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--pdb_path', type=str,
                         default='./example/4yhj.pdb')
+    parser.add_argument('--sdf_path', type=str,
+                        default=None, help='path to the sdf file of reference ligand')
     parser.add_argument('--num_atom', type=int,
                         default=29)
     parser.add_argument('-build_method', type=str, default='reconstruct', help='build or reconstruct')
@@ -284,8 +286,8 @@ if __name__ == '__main__':
         # AddHigherOrderEdges(order=config.model.edge_order)
     ])
     # # Data
-    sdf_file = './ref_1.sdf'
-    data = pdb_to_pocket_data(args.pdb_path, sdf_file)
+
+    data = pdb_to_pocket_data(args.pdb_path, args.sdf_file)
     data = transform(data)
     ligand_data = data.ligand_atom_feature, data.ligand_atom_feature_full, data.ligand_pos, data.ligand_bond_index, data.ligand_bond_type,\
                 data.ligand_edge_index, data.ligand_edge_type
