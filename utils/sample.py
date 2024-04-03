@@ -163,11 +163,12 @@ def construct_dataset_pocket(num_sample, batch_size, dataset_info, num_points=No
                 adj = get_adj_matrix(n_particles + num_node_frag)
 
                 num_node = torch.tensor([n_particles + num_node_frag])
+                ligand_bond_type = torch.ones(adj.size(1), dtype=torch.long) * 2
                 if start_linker is not None:
                     data = ProteinLigandData(ligand_atom_feature=atom_type_linker,
                                             ligand_atom_feature_full=atom_feature_full_linker,
                                             ligand_num_node=num_node, ligand_bond_index=adj, ligand_pos=pos,
-                                            frag_mask= frag_mask,
+                                            frag_mask= frag_mask,ligand_bond_type = ligand_bond_type,
                                             protein_atom_feature_full=protein_atom_feature_full, 
                                             protein_atom_feature = protein_atom_feature,
                                             protein_pos=protein_pos,
@@ -175,6 +176,7 @@ def construct_dataset_pocket(num_sample, batch_size, dataset_info, num_points=No
                 else:
                     data = ProteinLigandData(ligand_atom_feature=atom_type, ligand_atom_feature_full=atom_feature_full,
                                             ligand_num_node=num_node, ligand_bond_index=adj, ligand_pos=pos,
+                                            ligand_bond_type = ligand_bond_type,
                                             protein_atom_feature=protein_atom_feature,
                                             protein_atom_feature_full=protein_atom_feature_full, protein_pos=protein_pos,
                                             protein_bond_index=protein_bond_index)

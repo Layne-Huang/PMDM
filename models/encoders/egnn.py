@@ -215,6 +215,9 @@ class EGNN_Sparse(MessagePassing):
         hidden_out, coors_out = self.propagate(edge_index, x=feats, edge_attr=edge_attr_feats,
                                                coors=coors, rel_coors=rel_coors,
                                                batch=batch, ligand_batch=ligand_batch, linker_mask=linker_mask)
+        # output = self.propagate(edge_index, x=feats, edge_attr=edge_attr_feats,
+        #                                        coors=coors, rel_coors=rel_coors,
+        #                                        batch=batch, ligand_batch=ligand_batch, linker_mask=linker_mask)
         return torch.cat([coors_out, hidden_out], dim=-1)
 
     def message(self, x_i, x_j, edge_attr) -> Tensor:
@@ -238,9 +241,12 @@ class EGNN_Sparse(MessagePassing):
         size = self._check_input(edge_index, size)
         coll_dict = self._collect(self._user_args,
                                      edge_index, size, kwargs)
+
+        # # pyg version older than 2.3.0
         # size = self.__check_input__(edge_index, size)
         # coll_dict = self.__collect__(self.__user_args__,
         #                              edge_index, size, kwargs)
+        
         msg_kwargs = self.inspector.distribute('message', coll_dict)
         aggr_kwargs = self.inspector.distribute('aggregate', coll_dict)
         update_kwargs = self.inspector.distribute('update', coll_dict)

@@ -1,3 +1,6 @@
+import os
+os.system('module load openmind8/cuda/11.7')
+
 import argparse
 from statistics import mean
 
@@ -206,7 +209,7 @@ if __name__ == '__main__':
     parser.add_argument('--save_traj', action='store_true',
                         help='whether store the whole trajectory for sampling')
     parser.add_argument('--num_samples', type=int, default=10)
-    parser.add_argument('--batch_size', type=int, default=100)
+    parser.add_argument('--batch_size', type=int, default=10)
     parser.add_argument('--resume', type=str, default=None)
     parser.add_argument('--tag', type=str, default='')
     parser.add_argument('--clip', type=float, default=1000.0)
@@ -229,6 +232,11 @@ if __name__ == '__main__':
                         help='weight for DDIM and DDPM: 0->DDIM, 1->DDPM')
     args = parser.parse_args()
 
+    args.ckpt='/om/user/layne_h/project/PMDM/500.pt'
+    args.pdb_path='/om/user/layne_h/project/PMDM_raw/data/8h6tcut10/8h6tcut10_pocket.pdb'
+    args.num_atom=20
+    args.num_samples=5
+    args.sampling_type='generalized'
 
     protein_root = os.path.dirname(args.pdb_path)
     pdb_name = os.path.basename(args.pdb_path)[:4]
@@ -289,8 +297,11 @@ if __name__ == '__main__':
 
     data = pdb_to_pocket_data(args.pdb_path, args.sdf_path)
     data = transform(data)
-    ligand_data = data.ligand_atom_feature, data.ligand_atom_feature_full, data.ligand_pos, data.ligand_bond_index, data.ligand_bond_type,\
-                data.ligand_edge_index, data.ligand_edge_type
+    if args.sdf_path is not None:
+        ligand_data = data.ligand_atom_feature, data.ligand_atom_feature_full, data.ligand_pos, data.ligand_bond_index, data.ligand_bond_type,\
+                    data.ligand_edge_index, data.ligand_edge_type
+    else:
+        ligand_data = None
     bond_index = data.ligand_bond_index
     bond_type = data.ligand_bond_type
     # Model
@@ -371,7 +382,8 @@ if __name__ == '__main__':
 
                 pos_list = unbatch(pos_gen, batch.ligand_atom_feature_batch)
                 atom_list = unbatch(atom_type, batch.ligand_atom_feature_batch)
-                # atom_charge_list = atom_charge.reshape(num_samples, -1, 1)
+                if batch_size>num_samples:
+                    batch_size=num_samples
                 for m in range(batch_size):
                     try:
                         pos = pos_list[m].detach().cpu()
@@ -385,8 +397,8 @@ if __name__ == '__main__':
                             indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)], dtype=np.long)
                             for i, n in enumerate(indicators_elements):
                                 indicators[i, n] = 1
-                            # gmol = reconstruct_from_generated(pos, new_element, indicators)
-                            gmol = reconstruct_from_generated_with_edges(pos, new_element, bond_index, bond_type)
+                            gmol = reconstruct_from_generated(pos, new_element, indicators)
+                            # gmol = reconstruct_from_generated_with_edges(pos, new_element, bond_index, bond_type)
                         elif args.build_method == 'build':
                             new_element = torch.argmax(atom_type[:, :num_atom_type], dim=1)
                             # gmol = build_molecule(pos, new_element, dataset_info)
