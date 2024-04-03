@@ -232,12 +232,6 @@ if __name__ == '__main__':
                         help='weight for DDIM and DDPM: 0->DDIM, 1->DDPM')
     args = parser.parse_args()
 
-    args.ckpt='/om/user/layne_h/project/PMDM/500.pt'
-    args.pdb_path='/om/user/layne_h/project/PMDM_raw/data/8h6tcut10/8h6tcut10_pocket.pdb'
-    args.num_atom=20
-    args.num_samples=5
-    args.sampling_type='generalized'
-
     protein_root = os.path.dirname(args.pdb_path)
     pdb_name = os.path.basename(args.pdb_path)[:4]
     protein_filename = os.path.basename(args.pdb_path)
