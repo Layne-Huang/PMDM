@@ -121,14 +121,16 @@ mol.RemoveAllConformers()
 for i, atom in enumerate(mol.GetAtoms()):
     atom.SetProp('molAtomMapNumber', str(i+1))
 Draw.MolToImage(mol, size=(1000,1000))
+```
+For example, you could set keep index as [1,2,7,8,18,19,29] for the following molecule.
+![image](https://github.com/Layne-Huang/PMDM/assets/34830172/adcff9b3-bf01-419e-b94a-4fc668184387)
 
 ### Sample novel molecules for linker 
 ```bash
 python -u sample_linker.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file <mole file> --keep_index <seed fragments index> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
 ```
 `num_atom` is the number of atoms of generated fragments. `mask` is the index of the linker that you would like to replace in the original molecule.
-For example, you could set keep index as [1,2,7,8,18,19,29] for the following molecule.
-![image](https://github.com/Layne-Huang/PMDM/assets/34830172/adcff9b3-bf01-419e-b94a-4fc668184387)
+
 
 
 ### Metrics
