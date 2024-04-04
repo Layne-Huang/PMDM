@@ -122,7 +122,7 @@ for i, atom in enumerate(mol.GetAtoms()):
     atom.SetProp('molAtomMapNumber', str(i+1))
 Draw.MolToImage(mol, size=(1000,1000))
 ```
-For example, you could set keep index as [1,2,7,8,18,19,29] for the following molecule.
+For example, you could set keep index as 1 2 7 8 18 19 29 for the following molecule.
 ![image](https://github.com/Layne-Huang/PMDM/assets/34830172/adcff9b3-bf01-419e-b94a-4fc668184387)
 
 ### Sample novel molecules for linker 
