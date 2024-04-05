@@ -34,7 +34,7 @@ from torch_geometric.data import Batch
 
 FOLLOW_BATCH = ['ligand_atom_feature','protein_atom_feature_full']
 atomic_numbers_crossdock = torch.LongTensor([1,6,7,8,9,15,16,17])
-atomic_numbers_pocket = torch.LongTensor([1,6,7,8,9,15,16,17,34])
+atomic_numbers_pocket = torch.LongTensor([1,6,7,8,9,15,16,17,34,119])
 atomic_numbers_pdbind = torch.LongTensor([1, 5, 6, 7, 8, 9, 14, 15, 16, 17, 23, 26, 27, 29, 33, 34, 35, 44, 51, 53, 78])
 P_ligand_element_100 = torch.LongTensor([1, 5, 6, 7, 8, 9, 14, 15, 16, 17, 23, 26, 29, 33, 34, 35, 44, 51, 53, 78])
 # P_ligand_element_filter = torch.LongTensor([1, 35, 5, 6, 7, 8, 9, 15, 16, 17, 53])
@@ -104,10 +104,9 @@ if __name__ == '__main__':
                         default='./example/4yhj_ligand.sdf')
     parser.add_argument('--num_atom', type=int,
                         default=29)
-    parser.add_argument('--keep_index', type=list)
-    parser.add_argument('-build_method', type=str, default='build',help='build or reconstruct')
+    parser.add_argument('--keep_index', nargs='+', type=int)
+    parser.add_argument('-build_method', type=str, default='reconstruct',help='build or reconstruct')
     parser.add_argument('--cuda', type=str, default=True)
-    parser.add_argument('--savedir', type=str, default='test.pkl')
     parser.add_argument('--ckpt', type=str, help='path for loading the checkpoint')
     parser.add_argument('--save_traj', action='store_true',
                     help='whether store the whole trajectory for sampling')
@@ -139,16 +138,12 @@ if __name__ == '__main__':
                     help='weight for DDIM and DDPM: 0->DDIM, 1->DDPM')
     args = parser.parse_args()
 
-    # args.build_method = 'reconstruct'
-
     protein_root = os.path.dirname(args.pdb_path)
     pdb_name = os.path.basename(args.pdb_path)[:4]
     protein_filename = os.path.basename(args.pdb_path)
 
-    # mol_file = './data/custom_data/7d3i/7d3i/7d3i_ligand.sdf'
     mol_file = args.mol_file
     rmol = Chem.SDMolSupplier(mol_file)[0]
-
 
     ckpt = torch.load(args.ckpt)
     config = ckpt['config']
@@ -156,7 +151,7 @@ if __name__ == '__main__':
     device = torch.device("cuda" if args.cuda else "cpu")
 
     seed_all(args.seed)
-    log_dir = os.path.join(os.path.dirname(os.path.dirname(args.ckpt)),'wo_semantic', 'custom_pdb')
+    log_dir = os.path.join(os.path.dirname(os.path.dirname(args.ckpt)), 'custom_pdb')
 
     if args.n_steps == 0:
         args.n_steps = ckpt['config'].model.num_diffusion_timesteps
@@ -174,13 +169,9 @@ if __name__ == '__main__':
     pocket = False
     logger.info('Loading {} data...'.format(config.dataset.name))
     if config.dataset.name=='crossdock':
-        if 'pocket' in args.ckpt:
-            atomic_numbers = atomic_numbers_pocket
-            dataset_info = get_dataset_info('crossdock_pocket', False)
-            pocket=True
-        else:
-            atomic_numbers = atomic_numbers_crossdock
-            dataset_info = get_dataset_info('crossdock', False)
+        atomic_numbers = atomic_numbers_pocket
+        dataset_info = get_dataset_info('crossdock_pocket', False)
+        pocket=True
     else:
         if 'filter' in config.dataset.split:
             atomic_numbers = P_ligand_element_filter
@@ -220,7 +211,7 @@ if __name__ == '__main__':
     # print(gen_file_name)
     save_sdf_flag=True
     if save_sdf_flag:
-        sdf_dir = os.path.join(os.path.dirname(args.pdb_path),'wo_semantic',args.savedir.split('.')[0])
+        sdf_dir = os.path.join(os.path.dirname(args.pdb_path),'frag_gen')
         print('sdf idr:', sdf_dir)
         os.makedirs(sdf_dir, exist_ok=True)
     save_results=False
