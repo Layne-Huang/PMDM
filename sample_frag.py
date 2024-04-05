@@ -106,6 +106,10 @@ if __name__ == '__main__':
                         default=29)
     parser.add_argument('--keep_index', nargs='+', type=int)
     parser.add_argument('-build_method', type=str, default='reconstruct',help='build or reconstruct')
+
+    parser.add_argument('--keep_index', nargs='+',type=int)
+    parser.add_argument('-build_method', type=str, default='build',help='build or reconstruct')
+
     parser.add_argument('--cuda', type=str, default=True)
     parser.add_argument('--ckpt', type=str, help='path for loading the checkpoint')
     parser.add_argument('--save_traj', action='store_true',
