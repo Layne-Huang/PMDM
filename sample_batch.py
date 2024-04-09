@@ -258,7 +258,7 @@ if __name__ == '__main__':
     vina_score_list = []
 
     rd_vina_score_list = []
-    num_atom = config.model['num_atom']
+    num_atom_type = config.model['atom_type']
 
     save_results = args.save_results
     save_sdf_flag = args.save_sdf

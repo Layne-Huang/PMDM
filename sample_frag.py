@@ -106,10 +106,6 @@ if __name__ == '__main__':
                         default=29)
     parser.add_argument('--keep_index', nargs='+', type=int)
     parser.add_argument('-build_method', type=str, default='reconstruct',help='build or reconstruct')
-
-    parser.add_argument('--keep_index', nargs='+',type=int)
-    parser.add_argument('-build_method', type=str, default='build',help='build or reconstruct')
-
     parser.add_argument('--cuda', type=str, default=True)
     parser.add_argument('--ckpt', type=str, help='path for loading the checkpoint')
     parser.add_argument('--save_traj', action='store_true',
@@ -236,7 +232,7 @@ if __name__ == '__main__':
     vina_score_list = []
     rd_vina_score_list = []
     mol_list = []
-    num_atom = config.model['num_atom']
+    num_atom_type = config.model['atom_type']
 
     start_linker = torchify_dict(parse_sdf_file(mol_file))
     atomic_numbers = torch.LongTensor([1,6,7,8,9,15,16,17,34,119])

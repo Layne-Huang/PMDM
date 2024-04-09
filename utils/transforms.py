@@ -12,7 +12,7 @@ from torch_geometric.data import Data
 from torch_geometric.nn import radius_graph
 from torch_geometric.utils import to_dense_adj, dense_to_sparse, remove_self_loops, dropout_adj, to_undirected
 from torch_geometric.utils.num_nodes import maybe_num_nodes
-from torch_geometric.utils.subgraph import subgraph
+from torch_geometric.utils import subgraph
 from torch_scatter import scatter_add
 from torch_sparse import coalesce
 

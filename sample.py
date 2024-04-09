@@ -255,7 +255,7 @@ if __name__ == '__main__':
     rd_vina_score_list = []
 
     mol_list = []
-    num_atom = config.model['num_atom']  # 9 #config.model['num_atom']
+    num_atom_type = config.model['atom_type']  # 9 #config.model['atom_type']
     # if 'pocket' in args.ckpt:
     #     num_atom = 9
 
@@ -302,7 +302,7 @@ if __name__ == '__main__':
             nodesxsample = nodes_dist.sample(1).tolist()
 
             pos_init = torch.randn(data.ligand_element.size(0), 3).to(device)
-            atom_feature = torch.randn(data.ligand_element.size(0), num_atom).to(device)  # 8 for ligand, 9 for pocket
+            atom_feature = torch.randn(data.ligand_element.size(0), num_atom_type).to(device)  # 8 for ligand, 9 for pocket
             bond_index = batch.ligand_bond_index
             ligand_batch = torch.zeros(data.ligand_element.size(0), dtype=torch.int64).to(device)
             ligand_bond_type = torch.ones(bond_index.size(1), dtype=torch.long) * 2
@@ -470,7 +470,7 @@ if __name__ == '__main__':
                     if try_num < 9:
                         nodesxsample = nodes_dist.sample(1).tolist()
                     pos_init = torch.randn(1, nodesxsample[0], 3).reshape(-1, 3).to(device)
-                    atom_feature = torch.randn(1, nodesxsample[0], num_atom).reshape(-1, num_atom).to(device)
+                    atom_feature = torch.randn(1, nodesxsample[0], num_atom_type).reshape(-1, num_atom_type).to(device)
                     bond_index = get_adj_matrix(nodesxsample[0]).to(device)
                     ligand_batch = torch.zeros(nodesxsample[0], dtype=torch.int64).to(device)
                     ligand_bond_type = torch.ones(bond_index.size(1), dtype=torch.long) * 2

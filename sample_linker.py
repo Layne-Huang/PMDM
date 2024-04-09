@@ -173,15 +173,9 @@ if __name__ == '__main__':
     pocket = False
     logger.info('Loading {} data...'.format(config.dataset.name))
     if config.dataset.name=='crossdock':
-        if 'pocket' in args.ckpt:
-            atomic_numbers = atomic_numbers_pocket
-            dataset_info = get_dataset_info('crossdock_pocket', False)
-            pocket=True
-        else:
-            # atomic_numbers = atomic_numbers_pocket
-            # pocket=True
-            atomic_numbers = atomic_numbers_crossdock
-            dataset_info = get_dataset_info('crossdock', False)
+        atomic_numbers = atomic_numbers_pocket
+        dataset_info = get_dataset_info('crossdock_pocket', False)
+        pocket=True
     else:
         if 'filter' in config.dataset.split:
             atomic_numbers = P_ligand_element_filter
@@ -248,7 +242,7 @@ if __name__ == '__main__':
     vina_score_list = []
     rd_vina_score_list = []
     mol_list = []
-    num_atom = config.model['num_atom']
+    num_atom_type = config.model['atom_type']
 
     
     start_linker = torchify_dict(parse_sdf_file(mol_file))

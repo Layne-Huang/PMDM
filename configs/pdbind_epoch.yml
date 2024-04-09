@@ -26,7 +26,7 @@ model:
   m_dim: 128
   context: None
   vae_context: False
-  num_atom: 10 # atom type 8: feature 8
+  atom_type: 10 # atom type 8: feature 8
   protein_feature_dim: 31 # 10 27
 
 train:
