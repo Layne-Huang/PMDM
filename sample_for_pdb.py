@@ -333,7 +333,7 @@ if __name__ == '__main__':
     vina_score_list = []
     rd_vina_score_list = []
     mol_list = []
-    num_atom_type = config.model['atom_type']
+
 
     protein_atom_feature = data.protein_atom_feature.float()
     protein_atom_feature_full = data.protein_atom_feature_full.float()
@@ -415,7 +415,7 @@ if __name__ == '__main__':
                             raise MolReconsError()
 
                         if save_sdf_flag:
-                            # print('save')
+                            print('save')
                             gen_file_name = '{}_{}.sdf'.format(pdb_name, str(num_samples))
                             print(gen_file_name)
                             save_sdf(gmol, sdf_dir, gen_file_name)

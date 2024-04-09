@@ -255,7 +255,10 @@ if __name__ == '__main__':
     rd_vina_score_list = []
 
     mol_list = []
-    num_atom_type = config.model['atom_type']  # 9 #config.model['atom_type']
+    try:
+        num_atom_type = config.model['atom_type']  # 9 #config.model['atom_type']
+    except:
+        num_atom_type = config.model['num_atom']
     # if 'pocket' in args.ckpt:
     #     num_atom = 9
 

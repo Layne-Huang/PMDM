@@ -242,8 +242,6 @@ if __name__ == '__main__':
     vina_score_list = []
     rd_vina_score_list = []
     mol_list = []
-    num_atom_type = config.model['atom_type']
-
     
     start_linker = torchify_dict(parse_sdf_file(mol_file))
     atomic_numbers = torch.LongTensor([1,6,7,8,9,15,16,17,34,119]) # including pocket elements
