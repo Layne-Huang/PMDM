@@ -151,7 +151,8 @@ if __name__ == '__main__':
     logger = get_logger('test', output_dir)
 
     # for 1k sample
-    config.dataset.split='./data/split_by_name_1k.pt'
+    # config.dataset.split='/om/user/layne_h/project/PMDM_raw/data/split_by_name.pt'
+    
     logger.info(args)
     logger.info(config)
 
@@ -173,7 +174,7 @@ if __name__ == '__main__':
             # pocket=True
             atomic_numbers = atomic_numbers_crossdock
             dataset_info = get_dataset_info('crossdock', False)
-        protein_root = './data/crossdocked_pocket10'
+        protein_root = '/om/user/layne_h/project/PMDM_raw/data/crossdocked_pocket10'
     else:
         if 'filter' in config.dataset.split:
             atomic_numbers = P_ligand_element_filter
