@@ -135,9 +135,9 @@ python -u sample_linker.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file 
 For example, you could mask 6 7 8 9 10 11 to generate new linkers.
 
 Here is an example command
-、、、
+```
 python -u sample_linker.py --ckpt 500.pt --pdb_path 3wzecut20/3wzecut20_pocket.pdb --mol_file 3wzecut20/3wzecut20_ligand.sdf --mask 6 7 8 9 10 11 --num_atom 4 --num_samples 1 --sampling_type generalized --batch_size 1 -build_method reconstruct
-、、、
+```
 The reference generated molecule is shown as follows:
 <img width="648" alt="image" src="https://github.com/Layne-Huang/PMDM/assets/34830172/138aa0e3-057f-4967-9ea9-c4756c60615e">
 
