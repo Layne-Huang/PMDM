@@ -150,9 +150,9 @@ if __name__ == '__main__':
                                  '_' + str(args.end_idx) + '_' + tag, tag=args.tag)
     logger = get_logger('test', output_dir)
 
-    # for 1k sample
+    # # for 1k sample
     # config.dataset.split='/om/user/layne_h/project/PMDM_raw/data/split_by_name.pt'
-    
+
     logger.info(args)
     logger.info(config)
 
@@ -278,6 +278,7 @@ if __name__ == '__main__':
     #     test_vina_score_list = pickle.load(f)
 
     for n, data in enumerate(tqdm(test_set_selected)):
+        num_samples = args.num_samples
         rmol = reconstruct_from_generated(data.ligand_pos, data.ligand_element,
                                         data.ligand_atom_feature)
         r_smile = Chem.MolToSmiles(rmol)
