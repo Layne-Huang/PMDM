@@ -123,6 +123,7 @@ class QVinaDockingTask(BaseDockingTask):
 
     def run(self, exhaustiveness=16):
         commands = """
+echo $PWD
 eval "$(conda shell.bash hook)"
 conda activate {env}
 cd {tmp}
@@ -131,7 +132,7 @@ prepare_receptor4.py -r {receptor_id}.pdb
 # obabel {receptor_id}.pdb -O{receptor_id}.pdbqt
 # Prepare ligand
 obabel {ligand_id}.sdf -O{ligand_id}.pdbqt
-./qvina2.1 \
+../qvina2.1 \
     --receptor {receptor_id}.pdbqt \
     --ligand {ligand_id}.pdbqt \
     --center_x {center_x:.4f} \
