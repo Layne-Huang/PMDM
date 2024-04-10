@@ -133,7 +133,8 @@ python -u sample_linker.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file 
 ```
 `num_atom` is the number of atoms of generated fragments. `mask` is the index of the linker that you would like to replace in the original molecule.
 For example, you could mask 6 7 8 9 10 11 to generate new linkers.
-![image](https://github.com/Layne-Huang/PMDM/assets/34830172/41d734ba-8297-46db-aea8-361f545506e2)
+![image](https://github.com/Layne-Huang/PMDM/assets/34830172/a162b549-5e6b-4d09-b8ba-54bc94a1a96b)
+
 Here is an example command
 、、、
 python -u sample_linker.py --ckpt 500.pt --pdb_path 3wzecut20/3wzecut20_pocket.pdb --mol_file 3wzecut20/3wzecut20_ligand.sdf --mask 6 7 8 9 10 11 --num_atom 4 --num_samples 1 --sampling_type generalized --batch_size 1 -build_method reconstruct
