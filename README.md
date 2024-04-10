@@ -132,6 +132,16 @@ For example, you could set keep index as 1 2 7 8 18 19 29 for the following mole
 python -u sample_linker.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file <mole file> --keep_index <seed fragments index> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
 ```
 `num_atom` is the number of atoms of generated fragments. `mask` is the index of the linker that you would like to replace in the original molecule.
+For example, you could mask 6 7 8 9 10 11 to generate new linkers.
+![image](https://github.com/Layne-Huang/PMDM/assets/34830172/41d734ba-8297-46db-aea8-361f545506e2)
+Here is an example command
+、、、
+python -u sample_linker.py --ckpt 500.pt --pdb_path 3wzecut20/3wzecut20_pocket.pdb --mol_file 3wzecut20/3wzecut20_ligand.sdf --mask 6 7 8 9 10 11 --num_atom 4 --num_samples 1 --sampling_type generalized --batch_size 1 -build_method reconstruct
+、、、
+The generated molecule is shown as follows:
+![image](https://github.com/Layne-Huang/PMDM/assets/34830172/656fea3b-1dd9-406f-b55d-338e26e04945)
+
+
 
 
 
