@@ -902,6 +902,8 @@ class MDM_full_pocket_coor_shared(nn.Module):
                     eps_node = eps_node / (1 - at).sqrt()
                     atom_next = ligand_atom_type - step_size * eps_node / sigmas[i] + noise_node * torch.sqrt(
                         step_size * 2)
+                else:
+                    raise ValueError('Unknown sampling type, it should be one of [generalized, ddpm_noisy, ld]')
 
                 ligand_pos = pos_next
                 ligand_atom_type = atom_next
@@ -956,7 +958,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
 
             frag_batch = ligand_batch[frag_mask]
             
-
+            protein_pos_ori = protein_pos
             protein_com = scatter_mean(protein_pos, protein_batch, dim=0)
             # ligand_pos = ligand_pos_init + protein_com[ligand_batch] #important
 
@@ -964,7 +966,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
             ligand_pos, protein_pos = center_pos_lp(ligand_pos, protein_pos, ligand_batch, protein_batch) #important
             # frag_pos = ligand_pos[frag_mask, :]
             # Recover the linker postion
-            # ligand_pos[linker_mask] = linker_pos #important
+            ligand_pos[linker_mask] = linker_pos #important
             original_atom_type = ligand_atom_type.clone()
 
             # VAE noise
@@ -1140,6 +1142,8 @@ class MDM_full_pocket_coor_shared(nn.Module):
                     eps_node = eps_node / (1 - at).sqrt()
                     atom_next = ligand_atom_type - step_size * eps_node / sigmas[i] + noise_node * torch.sqrt(
                         step_size * 2)
+                else:
+                    raise ValueError('Unknown sampling type, it should be one of [generalized, ddpm_noisy, ld]')
 
                 ligand_pos = pos_next #important
                 ligand_atom_type = atom_next
@@ -1171,6 +1175,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
         # protein_final = protein_pos
         protein_pos = protein_pos + (protein_com - protein_final)[protein_batch]
         ligand_pos = ligand_pos + (protein_com - protein_final)[ligand_batch] #important
+        print(torch.equal(protein_pos_ori, protein_pos))
         # ligand_pos = ligand_pos_init
         # ligand_pos = torch.cat([linker_pos,ligand_pos[~linker_mask,:]])
 
@@ -1210,7 +1215,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
 
             frag_batch = ligand_batch[frag_mask]
             
-
+            protein_pos_ori = protein_pos
             protein_com = scatter_mean(protein_pos, protein_batch, dim=0)
 
             # subtract the center of mass of the pocket (COM)
@@ -1380,6 +1385,8 @@ class MDM_full_pocket_coor_shared(nn.Module):
                     eps_node = eps_node / (1 - at).sqrt()
                     atom_next = ligand_atom_type - step_size * eps_node / sigmas[i] + noise_node * torch.sqrt(
                         step_size * 2)
+                else:
+                    raise ValueError('Unknown sampling type, it should be one of [generalized, ddpm_noisy, ld]')
 
                 ligand_pos = pos_next #important
                 ligand_atom_type = atom_next
@@ -1409,6 +1416,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
         protein_final = scatter_mean(protein_pos, protein_batch, dim=0)
         # protein_final = protein_pos
         protein_pos = protein_pos + (protein_com - protein_final)[protein_batch]
+
         ligand_pos = ligand_pos + (protein_com - protein_final)[ligand_batch] #important
         ligand_pos = ligand_pos
         # ligand_pos = torch.cat([linker_pos,ligand_pos[~linker_mask,:]])
