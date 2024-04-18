@@ -121,11 +121,12 @@ smiles = Chem.MolToSmiles(mol)
 print(smiles)
 mol.RemoveAllConformers()
 for i, atom in enumerate(mol.GetAtoms()):
-    atom.SetProp('molAtomMapNumber', str(i+1))
+    atom.SetProp('molAtomMapNumber', str(i))
 Draw.MolToImage(mol, size=(1000,1000))
 ```
-For example, you could set keep index as 1 2 7 8 18 19 29 for the following molecule.
-![image](https://github.com/Layne-Huang/PMDM/assets/34830172/adcff9b3-bf01-419e-b94a-4fc668184387)
+For example, you could set keep index as 1 2 7 8 18 19 29 for the following molecule to generate novel molecules based on the desired fragment.
+[sample_frag.pdf](https://github.com/Layne-Huang/PMDM/files/15028412/sample_frag.pdf)
+
 
 ### Sample novel molecules for linker 
 ```bash
