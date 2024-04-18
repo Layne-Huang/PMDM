@@ -149,13 +149,6 @@ The reference generated molecule is shown as follows:
 
 
 
-https://github.com/Layne-Huang/PMDM/assets/34830172/c3a53748-5127-4924-b56f-475202be4f67
-
-
-
-
-
-
 
 ### Metrics
 Evaluate the batch of generated molecules (You need to turn on the `save_results` arguments in sample* scripts)
