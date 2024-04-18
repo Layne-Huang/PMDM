@@ -202,12 +202,11 @@ if __name__ == '__main__':
                         default=None, help='path to the sdf file of reference ligand')
     parser.add_argument('--num_atom', type=int,
                         default=29)
-    parser.add_argument('-build_method', type=str, default='reconstruct', help='build or reconstruct')
+    parser.add_argument('--build_method', type=str, default='reconstruct', help='build or reconstruct')
     parser.add_argument('--config', type=str)
     parser.add_argument('--cuda', type=str, default=True)
     parser.add_argument('--ckpt', type=str, help='path for loading the checkpoint')
-    parser.add_argument('--save_traj', action='store_true',
-                        help='whether store the whole trajectory for sampling')
+    parser.add_argument('--save_sdf', type=bool, default=True)
     parser.add_argument('--num_samples', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=10)
     parser.add_argument('--resume', type=str, default=None)
@@ -226,7 +225,7 @@ if __name__ == '__main__':
     parser.add_argument('--w_local_node', type=float, default=1.0,
                         help='weight for local gradients')
     # Parameters for DDPM
-    parser.add_argument('--sampling_type', type=str, default='ld',
+    parser.add_argument('--sampling_type', type=str, default='generalized',
                         help='generalized, ddpm_noisy, ld: sampling method for DDIM, DDPM or Langevin Dynamics')
     parser.add_argument('--eta', type=float, default=1.0,
                         help='weight for DDIM and DDPM: 0->DDIM, 1->DDPM')
@@ -310,7 +309,7 @@ if __name__ == '__main__':
     # sample
     # gen_file_name = os.path.basename(args.pdb_path) + '_gen.sdf'
     # print(gen_file_name)
-    save_sdf_flag = True
+    save_sdf_flag = args.savedir
     if save_sdf_flag:
         sdf_dir = os.path.join(os.path.dirname(args.pdb_path), 'generate_ref')
         print('sdf idr:', sdf_dir)

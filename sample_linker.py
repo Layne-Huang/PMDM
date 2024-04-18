@@ -105,15 +105,12 @@ if __name__ == '__main__':
     parser.add_argument('--num_atom', type=int,
                         default=29)
     parser.add_argument('--mask', type=int, nargs='+',)
-    parser.add_argument('-build_method', type=str, default='build',help='build or reconstruct')
+    parser.add_argument('-build_method', type=str, default='reconstruct',help='build or reconstruct')
     parser.add_argument('--config', type=str)
     parser.add_argument('--cuda', type=str, default=True)
-    parser.add_argument('--outdir', type=str, default='./outputs')
     parser.add_argument('--savedir', type=str, default='linker_3-6atoms.pkl')
     parser.add_argument('--ckpt', type=str, help='path for loading the checkpoint')
-    parser.add_argument('--save_traj', action='store_true', default=None,
-                    help='whether store the whole trajectory for sampling')
-    parser.add_argument('--resume', type=str, default=None)
+    parser.add_argument('--save_sdf', type=bool, default=True)
     parser.add_argument('--tag', type=str, default='')
     parser.add_argument('--clip', type=float, default=1000.0)
     parser.add_argument('--num_samples', type=int, default=1)
@@ -164,7 +161,7 @@ if __name__ == '__main__':
     # Logging
     # logger = get_logger('sample', log_dir)
     tag = 'result'
-    output_dir = get_new_log_dir(log_dir, args.sampling_type+"_8h6t_"+tag, tag=args.tag)
+    output_dir = get_new_log_dir(log_dir, args.sampling_type+"_linker_"+tag, tag=args.tag)
     logger = get_logger('test', output_dir)
 
     logger.info(args)
@@ -217,9 +214,9 @@ if __name__ == '__main__':
     #sample
     # gen_file_name = os.path.basename(args.pdb_path) + '_gen.sdf'
     # print(gen_file_name)
-    save_sdf_flag=True
+    save_sdf_flag=args.save_sdf
     if save_sdf_flag:
-        sdf_dir = os.path.join(os.path.dirname(args.pdb_path),args.savedir.split('.')[0])
+        sdf_dir = os.path.join(os.path.dirname(args.pdb_path),'linker_gen')
         print('sdf idr:', sdf_dir)
         os.makedirs(sdf_dir, exist_ok=True)
     save_results=True
@@ -246,13 +243,7 @@ if __name__ == '__main__':
     start_linker = torchify_dict(parse_sdf_file(mol_file))
     atomic_numbers = torch.LongTensor([1,6,7,8,9,15,16,17,34,119]) # including pocket elements
     start_linker['linker_atom_type'] = start_linker['element'].view(-1, 1) == atomic_numbers.view(1, -1)
-    # linker_index = torch.tensor([29,10,11])
-    # linker_index = torch.tensor([13,19,20,21,22,23,24,25,26,27,31])
-    # linker_index = torch.tensor([13,19,20,21,22,23,24,25,26,27,31,8,9,10,11,12,29])
-    # linker_index = torch.tensor([2,3,4,5,14,15,16,30,1,0,28,7,6,18,17,8,9,10,11,12,19,20,21,22,23,27])
-    # linker_index = torch.tensor([31,29,27,30,24,28,26,21,20,19,18,23,22,3,2,4,5,6,7,9,10]) #6rj6
-    # linker_index = torch.tensor([7,8,9,10,11,12,13,14,15,16,17,0,1,2,18,22,23,19,3]) #8h6t
-    # linker_index = torch.tensor([33,2,3,4,5,6,26,30,31,22,29,0,15,11,12,13,14,21,23]) #7eN8
+
 
     # important: define your own mask
     # mask = [8,9,10,11,12] #8h6p
@@ -268,21 +259,17 @@ if __name__ == '__main__':
     start_linker['atom_feature'] = torch.index_select(start_linker['atom_feature'], 0, keep_index)
     start_linker['linker_atom_type'] = torch.index_select(start_linker['linker_atom_type'], 0, keep_index)
     start_linker['pos'] = torch.index_select(start_linker['pos'], 0, keep_index)
-    num_points = len(mask)
-    
-    
-
+    num_points = args.num_atom
+  
     rmol = reconstruct_from_generated(start_linker['pos'], start_linker['element'],
                                                               start_linker['atom_feature'])
     r_smile = Chem.MolToSmiles(rmol)
-    print("reference smile:", r_smile)
-
 
     protein_atom_feature = data.protein_atom_feature.float()
     protein_atom_feature_full = data.protein_atom_feature_full.float()
     # if 'pocket' in args.ckpt:
     #     protein_atom_feature = data.protein_atom_feature.float()
-    data_list,_ = construct_dataset_pocket(num_samples*1,batch_size,dataset_info,num_points,None,start_linker,None,
+    data_list,_ = construct_dataset_pocket(num_samples*1,batch_size,dataset_info,num_points,num_points,start_linker,None,
     protein_atom_feature,protein_atom_feature_full,data.protein_pos,data.protein_bond_index)
 
     for n, datas in enumerate(tqdm(data_list)):
@@ -385,7 +372,7 @@ if __name__ == '__main__':
                         print("Generate vina score:", g_vina_score)
                         vina_score_list.append(g_vina_score)
                         if save_sdf_flag:
-                            # print('save')
+                            print('save')
                             gen_file_name = '{}_{}_{}.sdf'.format(str(g_vina_score), pdb_name, str(num_samples))
                             # gen_file_name = '{}_{}.sdf'.format(pdb_name, str(num_samples))
                             print(gen_file_name) #str(g_vina_score)+"_"+

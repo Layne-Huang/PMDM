@@ -108,11 +108,9 @@ if __name__ == '__main__':
     parser.add_argument('-build_method', type=str, default='reconstruct',help='build or reconstruct')
     parser.add_argument('--cuda', type=str, default=True)
     parser.add_argument('--ckpt', type=str, help='path for loading the checkpoint')
-    parser.add_argument('--save_traj', action='store_true',
-                    help='whether store the whole trajectory for sampling')
-    parser.add_argument('--resume', type=str, default=None)
     parser.add_argument('--tag', type=str, default='')
     parser.add_argument('--out_dir', type=str, default=None)
+    parser.add_argument('--save_sdf', type=bool, default=True)
     parser.add_argument('--num_samples', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=100)
     parser.add_argument('--clip', type=float, default=1000.0)
@@ -160,7 +158,7 @@ if __name__ == '__main__':
     # Logging
     # logger = get_logger('sample', log_dir)
     tag = 'result'
-    output_dir = get_new_log_dir(log_dir, args.sampling_type+"_largest_mol_modify_"+tag, tag=args.tag)
+    output_dir = get_new_log_dir(log_dir, args.sampling_type+"_frag_"+tag, tag=args.tag)
     logger = get_logger('test', output_dir)
 
     logger.info(args)
@@ -206,10 +204,8 @@ if __name__ == '__main__':
     model.load_state_dict(ckpt['model'])
     model.eval()
 
-    #sample
-    # gen_file_name = os.path.basename(args.pdb_path) + '_gen.sdf'
-    # print(gen_file_name)
-    save_sdf_flag=True
+ 
+    save_sdf_flag=args.save_sdf
     if save_sdf_flag:
         sdf_dir = os.path.join(os.path.dirname(args.pdb_path),'frag_gen')
         print('sdf idr:', sdf_dir)
@@ -236,14 +232,13 @@ if __name__ == '__main__':
     start_linker = torchify_dict(parse_sdf_file(mol_file))
     atomic_numbers = torch.LongTensor([1,6,7,8,9,15,16,17,34,119])
     start_linker['linker_atom_type'] = start_linker['element'].view(-1, 1) == atomic_numbers.view(1, -1)
-    # important: define your own mask
+    # important: define your own keep index
     # keep_index = torch.tensor([29,10,11])
     keep_index = torch.tensor(args.keep_index)
     start_linker['element'] = torch.index_select(start_linker['element'], 0, keep_index)
     start_linker['atom_feature'] = torch.index_select(start_linker['atom_feature'], 0, keep_index)
     start_linker['linker_atom_type'] = torch.index_select(start_linker['linker_atom_type'], 0, keep_index)
     start_linker['pos'] = torch.index_select(start_linker['pos'], 0, keep_index)
-
 
     protein_atom_feature = data.protein_atom_feature_full.float()
     # if 'pocket' in args.ckpt:
