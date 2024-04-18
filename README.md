@@ -124,8 +124,13 @@ for i, atom in enumerate(mol.GetAtoms()):
     atom.SetProp('molAtomMapNumber', str(i))
 Draw.MolToImage(mol, size=(1000,1000))
 ```
-For example, you could set keep index as 1 2 7 8 18 19 29 for the following molecule to generate novel molecules based on the desired fragment.
-[sample_frag.pdf](https://github.com/Layne-Huang/PMDM/files/15028412/sample_frag.pdf)
+For example, you could set keep index as 4 5 10 11 12 13 14 for the following molecule to generate novel molecules based on the desired fragment.
+![sample_frag](https://github.com/Layne-Huang/PMDM/assets/34830172/5a4313b4-e2e9-4a70-95fa-dfaf054d3234)
+
+Here is an example command
+```
+python -u sample_frag.py --ckpt 500.pt --pdb_path data/2VUKcut10/2VUKcut10_pocket.pdb --mol_file data/2VUKcut10/2VUKcut10_ligand.sdf --keep_index 4 5 10 11 12 13 14 --num_atom 18 --num_samples 20 --sampling_type generalized
+```
 
 
 ### Sample novel molecules for linker 
@@ -137,7 +142,7 @@ For example, you could mask 6 7 8 9 10 11 to generate new linkers.
 
 Here is an example command
 ```
-python -u sample_linker.py --ckpt 500.pt --pdb_path 3wzecut20/3wzecut20_pocket.pdb --mol_file 3wzecut20/3wzecut20_ligand.sdf --mask 6 7 8 9 10 11 --num_atom 4 --num_samples 1 --sampling_type generalized --batch_size 1 -build_method reconstruct
+python -u sample_linker.py --ckpt 500.pt --pdb_path data/3wzecut10/3wzecut10_pocket.pdb --mol_file data/3wzecut10/3wzecut10_ligand.sdf --mask 6 7 8 9 10 11 --num_atom 4 --num_samples 1 --sampling_type generalized --batch_size 1 -build_method reconstruct
 ```
 The reference generated molecule is shown as follows:
 <img width="648" alt="image" src="https://github.com/Layne-Huang/PMDM/assets/34830172/138aa0e3-057f-4967-9ea9-c4756c60615e">
