@@ -126,13 +126,12 @@ Draw.MolToImage(mol, size=(1000,1000))
 ```
 For example, you could set keep index as 4 5 10 11 12 13 14 for the following molecule to generate novel molecules based on the desired fragment.
 
-![sample_frag](https://github.com/Layne-Huang/PMDM/assets/34830172/5a4313b4-e2e9-4a70-95fa-dfaf054d3234)
-
 Here is an example command
 ```
 python -u sample_frag.py --ckpt 500.pt --pdb_path data/2VUKcut10/2VUKcut10_pocket.pdb --mol_file data/2VUKcut10/2VUKcut10_ligand.sdf --keep_index 4 5 10 11 12 13 14 --num_atom 18 --num_samples 20 --sampling_type generalized
 ```
 
+![sample_frag](https://github.com/Layne-Huang/PMDM/assets/34830172/5a4313b4-e2e9-4a70-95fa-dfaf054d3234)
 
 ### Sample novel molecules for linker 
 ```bash
