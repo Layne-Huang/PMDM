@@ -59,7 +59,7 @@ conda env create -f evaluation/env_adt.yml
 conda activate adt
 ```
 ### Pre-trained models
-The pre-trained models could be downloaded from [Zenodo](https://zenodo.org/records/10630921).
+The pre-trained model (500.pt) could be downloaded from [Zenodo](https://zenodo.org/records/10630921).
 
 ## Benchmarks
 ### CrossDocked
