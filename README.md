@@ -174,16 +174,15 @@ python docking_2_single.py --receptor_file <prepapre_receptor4_outdir> --sdf_fil
 !!! You have to replace the path of your own mol and adt environment paths with the path in the scripts already.
 ### Citation
 ```
-@article {Huang2023.01.28.526011,
-	author = {Lei Huang and Tingyang Xu and Yang Yu and Peilin Zhao and Ka-Chun Wong and Hengtong Zhang},
-	title = {A dual diffusion model enables 3D binding bioactive molecule generation and lead optimization given target pockets},
-	elocation-id = {2023.01.28.526011},
-	year = {2023},
-	doi = {10.1101/2023.01.28.526011},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2023/01/30/2023.01.28.526011},
-	eprint = {https://www.biorxiv.org/content/early/2023/01/30/2023.01.28.526011.full.pdf},
-	journal = {bioRxiv}
+@article{huang2024dual,
+  title={A dual diffusion model enables 3D molecule generation and lead optimization based on target pockets},
+  author={Huang, Lei and Xu, Tingyang and Yu, Yang and Zhao, Peilin and Chen, Xingjian and Han, Jing and Xie, Zhi and Li, Hailong and Zhong, Wenge and Wong, Ka-Chun and others},
+  journal={Nature Communications},
+  volume={15},
+  number={1},
+  pages={2657},
+  year={2024},
+  publisher={Nature Publishing Group UK London}
 }
 ```
 
