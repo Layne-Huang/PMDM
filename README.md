@@ -106,7 +106,7 @@ python -u sample_batch.py --ckpt <checkpoint> --num_samples <number of samples> 
 ```bash
 python -u sample_for_pdb.py --ckpt <checkpoint> --pdb_path <pdb path> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
 ```
-`num_atom` is the number of atoms of generated molecules.
+`num_atom` is the number of atoms of generated molecules (It is suggested to be no more than 30 if you use our pretrained model).
 
 ### Sample novel molecules given seed fragments
 ```bash
