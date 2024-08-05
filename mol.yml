@@ -224,4 +224,5 @@ dependencies:
       - torch-spline-conv==1.2.2+pt21cu118
       - tqdm==4.66.2
       - yarl==1.9.4
-prefix: /home/user/miniconda3/envs/mol
+#prefix: /home/user/miniconda3/envs/mol
+prefix: /vols/opig/users/isrankin/anaconda3
