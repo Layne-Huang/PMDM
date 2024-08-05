@@ -1,22 +1,26 @@
-name: mol
+name: mol2
 channels:
   - nvidia
   - conda-forge
   - pytorch
   - defaults
+  - pyg
 dependencies:
-  - _libgcc_mutex=0.1=conda_forge
-  - _openmp_mutex=4.5=2_gnu
-  - acpype=2022.7.21=pyhd8ed1ab_1
-  - ambertools=22.4=py39h804d063_0
+  - acpype=2022.7
+  - aiohttp
+  - aiosignal==1.3.1
+  # - amberlite==22.0
+  - ambertools~=22.4
+  # - amberutils==21.0
   - arpack=3.7.0=hdefa2d7_2
+  - async-timeout==4.0.3
+  - attrs==23.2.0
+  - biopython==1.83
   - blas=1.0=mkl
-  - boost=1.78.0=py39hda80f44_5
   - boost-cpp=1.78.0=h2c5509c_4
+  - boost=1.78.0=py39hda80f44_5
   - bottleneck=1.3.7=py39ha9d4c09_0
-  - brotli=1.0.9=h5eee18b_7
-  - brotli-bin=1.0.9=h5eee18b_7
-  - brotli-python=1.0.9=py39h6a678d5_7
+  - brotli=1
   - bzip2=1.0.8=hd590300_5
   - c-ares=1.19.1=h5eee18b_0
   - ca-certificates=2024.3.11=h06a4308_0
@@ -24,34 +28,30 @@ dependencies:
   - certifi=2024.2.2=py39h06a4308_0
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
   - contourpy=1.2.0=py39hdb19cb5_0
-  - cuda-cudart=11.8.89=0
-  - cuda-cupti=11.8.87=0
-  - cuda-libraries=11.8.0=0
-  - cuda-nvrtc=11.8.89=0
-  - cuda-nvtx=11.8.86=0
-  - cuda-runtime=11.8.0=0
-  - cuda-version=11.8=h70ddcb2_3
-  - cudatoolkit=11.8.0=h4ba93d1_13
-  - cudatoolkit-dev=11.7.0=h1de0b5d_6
-  - cudnn=8.9.7.29=hbc23b4c_3
-  - curl=8.5.0=hdbd6064_0
+  - cuda-cudart=11.8
+  - cuda-cupti=11.8
+  - cuda-libraries=11.8
+  - cuda-nvrtc=11.8
+  - cuda-nvtx=11.8
+  - cuda-runtime=11.8
+  - cuda-version=11.8
+  - cudatoolkit=11.8
+  - cudnn
+  - curl
   - cycler=0.11.0=pyhd3eb1b0_0
   - cython=3.0.10=py39h5eee18b_0
+  - easydict
+  - einops==0.7.0
   - expat=2.5.0=h6a678d5_0
   - ffmpeg=4.3=hf484d3e_0
   - fftw=3.3.10=nompi_hc118613_108
   - filelock=3.13.1=py39h06a4308_0
-  - font-ttf-dejavu-sans-mono=2.37=hd3eb1b0_0
-  - font-ttf-inconsolata=2.001=hcb22688_0
-  - font-ttf-source-code-pro=2.030=hd3eb1b0_0
-  - font-ttf-ubuntu=0.83=h8b1ccd4_0
-  - fontconfig=2.14.2=h14ed4e7_0
-  - fonts-anaconda=1=h8fa9717_0
-  - fonts-conda-ecosystem=1=hd3eb1b0_0
   - freetype=2.12.1=h4a9f257_0
+  - frozenlist==1.4.1
+  - fsspec==2024.3.1
   - gdbm=1.18=hd4cb3f1_4
-  - glib=2.78.4=h6a678d5_0
   - glib-tools=2.78.4=h6a678d5_0
+  - glib=2.78.4=h6a678d5_0
   - gmp=6.2.1=h295c915_3
   - gmpy2=2.1.2=py39heeb90bb_0
   - gnutls=3.6.15=he1e5248_0
@@ -63,6 +63,7 @@ dependencies:
   - importlib_resources=6.1.1=py39h06a4308_1
   - intel-openmp=2023.1.0=hdb19cb5_46306
   - jinja2=3.1.3=py39h06a4308_0
+  - joblib==1.4.0
   - jpeg=9e=h5eee18b_1
   - kiwisolver=1.4.4=py39h6a678d5_0
   - krb5=1.20.1=h143b758_1
@@ -72,9 +73,6 @@ dependencies:
   - lerc=3.0=h295c915_0
   - libaec=1.1.3=h59595ed_0
   - libblas=3.9.0=1_h86c2bf4_netlib
-  - libbrotlicommon=1.0.9=h5eee18b_7
-  - libbrotlidec=1.0.9=h5eee18b_7
-  - libbrotlienc=1.0.9=h5eee18b_7
   - libcublas=11.11.3.6=0
   - libcufft=10.9.0.58=0
   - libcufile=1.9.1.3=0
@@ -115,52 +113,66 @@ dependencies:
   - libzip=1.10.1=h2629f0a_3
   - libzlib=1.2.13=hd590300_5
   - llvm-openmp=14.0.6=h9e868ea_0
+  - python-lmdb>=1.4
   - lz4-c=1.9.4=h6a678d5_0
   - markupsafe=2.1.3=py39h5eee18b_0
-  - mkl=2023.1.0=h213fc3f_46344
-  - mkl-service=2.4.0=py39h5eee18b_1
+  - matplotlib==3.8.2
   - mkl_fft=1.3.8=py39h5eee18b_0
   - mkl_random=1.2.4=py39hdb19cb5_0
+  - mkl-service=2.4.0=py39h5eee18b_1
+  - mkl=2023.1.0=h213fc3f_46344
+  # - mmpbsa-py==16.0
   - mpc=1.1.0=h10f8cd9_1
   - mpfr=4.0.2=hb69a4c5_1
   - mpmath=1.3.0=py39h06a4308_0
+  - multidict==6.0.5
   - munkres=1.1.4=py_0
   - ncurses=6.4=h6a678d5_0
   - netcdf-fortran=4.6.0=nompi_heb5813c_103
   - nettle=3.7.3=hbbd107a_1
   - networkx=3.1=py39h06a4308_0
   - numexpr=2.8.7=py39h85018f9_0
-  - numpy=1.23.5=py39hf6e8229_1
   - numpy-base=1.23.5=py39h060ed82_1
+  - numpy=1.23.5=py39hf6e8229_1
   - openbabel=3.1.1=py39h2d01fe1_9
   - openh264=2.1.1=h4ff587b_0
   - openjpeg=2.4.0=h3ad879b_0
   - openssl=3.2.1=hd590300_1
   - packaging=23.2=py39h06a4308_0
+  # - packmol-memgen==1.2.3rc0
   - packmol=20.010=h86c2bf4_0
   - pandas=2.1.3=py39hddac248_0
   - parmed=3.4.4=py39h227be39_0
   - pcre2=10.42=hebb0a14_0
   - perl=5.34.0=h5eee18b_2
   - pillow=10.2.0=py39h5eee18b_0
-  - pip=23.3.1                                       # CHANGED THIS
+  - pip=23.3.1=py39h06a4308_0
   - pixman=0.43.2=h59595ed_0
+  - psutil==5.9.8
   - pycairo=1.23.0=py39hd1222b9_0
+  - pyg=2.4.0
   - pyparsing=3.0.9=py39h06a4308_0
   - pysocks=1.7.1=py39h06a4308_0
-  - python=3.9.18=h0755675_1_cpython
+  - python_abi=3.9=4_cp39
   - python-dateutil=2.8.2=pyhd3eb1b0_0
   - python-tzdata=2023.3=pyhd3eb1b0_0
-  - python_abi=3.9=4_cp39
-  - pytorch=2.1.1=py3.9_cuda11.8_cudnn8.7.0_0
-  - pytorch-cuda=11.8=h7e8668a_5
+  - python=3.9.18=h0755675_1_cpython
+  - pytorch-cluster=1.6.3
+  - pytorch-cuda=11.8
   - pytorch-mutex=1.0=cuda
+  - pytorch-scatter=2.1.2
+  - pytorch-sparse=0.6.18
+  - pytorch-spline-conv=1.2.2
+  - pytorch~=2.1
+  # - pytraj==2.0
   - pytz=2023.3.post1=py39h06a4308_0
   - pyyaml=6.0.1=py39h5eee18b_0
-  - rdkit=2022.09.1=py39hb00a813_2
+  - rdkit>=2022
   - readline=8.2=h5eee18b_0
   - reportlab=3.5.67=py39hfdd840d_1
-  - requests=2.31.0=py39h06a4308_1
+  - requests=2.31
+  # - sander>=22
+  - scikit-learn==1.4.2
   - scipy=1.12.0=py39h5f9d8c6_0
   - setuptools=68.2.2=py39h06a4308_0
   - six=1.16.0=pyhd3eb1b0_1
@@ -168,15 +180,15 @@ dependencies:
   - sqlite=3.41.2=h5eee18b_0
   - sympy=1.12=py39h06a4308_0
   - tbb=2021.8.0=hdb19cb5_0
+  - threadpoolctl==3.4.0
   - tk=8.6.13=noxft_h4845f30_101
   - torchaudio=2.1.1=py39_cu118
   - torchtriton=2.1.0=py39
   - torchvision=0.16.1=py39_cu118
-  - typing-extensions=4.9.0=py39h06a4308_1
-  - typing_extensions=4.9.0=py39h06a4308_1
-  - tzdata=2024a=h04d1e81_0
-  - urllib3=2.1.0=py39h06a4308_1
-  - wheel=0.41.2=py39h06a4308_0
+  - tqdm
+  - tzdata
+  - urllib3
+  - wheel
   - xorg-kbproto=1.0.7=h7f98852_1002
   - xorg-libice=1.1.1=hd590300_0
   - xorg-libsm=1.2.4=h7391055_0
@@ -189,40 +201,10 @@ dependencies:
   - xorg-xproto=7.0.31=h27cfd23_1007
   - xz=5.4.6=h5eee18b_0
   - yaml=0.2.5=h7b6447c_0
+  - yarl==1.9.4
   - zipp=3.17.0=py39h06a4308_0
   - zlib=1.2.13=hd590300_5
   - zstd=1.5.5=hc292b87_0
-  - pip:
-      - aiohttp==3.9.4
-      - aiosignal==1.3.1
-      - amberlite==22.0
-      - amberutils==21.0
-      - async-timeout==4.0.3
-      - attrs==23.2.0
-      - biopython==1.83
-      - easydict==1.13
-      - einops==0.7.0
-      - fonttools==4.45.0
-      - frozenlist==1.4.1
-      - fsspec==2024.3.1
-      - joblib==1.4.0
-      - lmdb==1.4.1
-      - matplotlib==3.8.2
-      - mmpbsa-py==16.0
-      - multidict==6.0.5
-      - packmol-memgen==1.2.3rc0
-      - pdb4amber==22.0
-      - psutil==5.9.8
-      - pytraj==2.0.6
-      - sander==22.0
-      - scikit-learn==1.4.2
-      - threadpoolctl==3.4.0
-      - torch-cluster==1.6.3                                 # CHANGED THIS 
-      - torch-geometric==2.4.0
-      - torch-scatter==2.1.2+pt21cu118
-      - torch-sparse==0.6.18+pt21cu118
-      - torch-spline-conv==1.2.2+pt21cu118
-      - tqdm==4.66.2
-      - yarl==1.9.4
+
 #prefix: /home/user/miniconda3/envs/mol
-prefix: /vols/opig/users/isrankin/anaconda3                   # CHANGED THIS
+prefix: /vols/opig/users/isrankin/anaconda3
