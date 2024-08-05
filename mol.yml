@@ -143,7 +143,7 @@ dependencies:
   - pcre2=10.42=hebb0a14_0
   - perl=5.34.0=h5eee18b_2
   - pillow=10.2.0=py39h5eee18b_0
-  - pip=23.3.1=py39h06a4308_0
+  - pip=23.3.1                                       # CHANGED THIS
   - pixman=0.43.2=h59595ed_0
   - pycairo=1.23.0=py39hd1222b9_0
   - pyparsing=3.0.9=py39h06a4308_0
@@ -217,7 +217,7 @@ dependencies:
       - sander==22.0
       - scikit-learn==1.4.2
       - threadpoolctl==3.4.0
-      - torch-cluster==1.6.3+pt21cu118
+      - torch-cluster==1.6.3                                 # CHANGED THIS 
       - torch-geometric==2.4.0
       - torch-scatter==2.1.2+pt21cu118
       - torch-sparse==0.6.18+pt21cu118
@@ -225,4 +225,4 @@ dependencies:
       - tqdm==4.66.2
       - yarl==1.9.4
 #prefix: /home/user/miniconda3/envs/mol
-prefix: /vols/opig/users/isrankin/anaconda3
+prefix: /vols/opig/users/isrankin/anaconda3                   # CHANGED THIS
