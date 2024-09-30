@@ -318,7 +318,7 @@ if __name__ == '__main__':
                         if args.build_method == 'reconstruct':
                             new_element = torch.tensor([atomic_numbers_crossdock[m] for m in torch.argmax(atom_type[:,:num_atom_type],dim=1)])
                             indicators_elements = torch.argmax(atom_type[:,num_atom_type:],dim=1)
-                            indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)], dtype=np.long)
+                            indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)])
                             for i, n in enumerate(indicators_elements):
                                 indicators[i,n] = 1
                             gmol = reconstruct_from_generated(pos,new_element,indicators)
@@ -385,7 +385,7 @@ if __name__ == '__main__':
                             'mol':gmol,}
                             # 'metric_result':metrics}
                             results.append(result)
-                        logger.info('Successfully generate molecule for {}, remining {} samples generated'.format(pdb_name, num_samples))
+                        logger.info('Successfully generate molecule for {}, remaining {} samples generated'.format(pdb_name, num_samples))
                         mol_list.append(gmol)
                         if num_samples==0:
                             break
