@@ -356,7 +356,7 @@ dependencies:
       - multipledispatch==1.0.0
       - multiprocess==0.70.16
       - nh3==0.2.17
-      - numpy==1.23.5
+      - numpy
       - numpydoc==1.7.0
       - numpyro==0.14.0
       - oddt==0.7
