@@ -59,7 +59,7 @@ def parse_sdf_file(path):
     rdmol.UpdatePropertyCache(strict=False)
     Chem.GetSymmSSSR(rdmol)
     rd_num_atoms = rdmol.GetNumAtoms()
-    feat_mat = np.zeros([rd_num_atoms, len(ATOM_FAMILIES)], dtype=np.long)
+    feat_mat = np.zeros([rd_num_atoms, len(ATOM_FAMILIES)])
 
     '''
     Each feature found contains information about the feature family 
