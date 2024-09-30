@@ -309,7 +309,7 @@ if __name__ == '__main__':
     # sample
     # gen_file_name = os.path.basename(args.pdb_path) + '_gen.sdf'
     # print(gen_file_name)
-    save_sdf_flag = args.savedir
+    save_sdf_flag = args.save_sdf
     if save_sdf_flag:
         sdf_dir = os.path.join(os.path.dirname(args.pdb_path), 'generate_ref')
         print('sdf idr:', sdf_dir)
