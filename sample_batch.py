@@ -364,14 +364,14 @@ if __name__ == '__main__':
 
                             
 
-                            new_ligand = torch.zeros([pos.size(0), len(ATOM_FAMILIES)], dtype=np.long)
+                            new_ligand = torch.zeros([pos.size(0), len(ATOM_FAMILIES)])
 
                             a = 0
                             num_atom_type = len(atomic_numbers)
                             if args.build_method == 'reconstruct':
                                 new_element = torch.tensor([atomic_numbers_crossdock[m] for m in torch.argmax(atom_type[:,:8],dim=1)])
                                 indicators_elements = torch.argmax(atom_type[:,8:],dim=1)
-                                indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)], dtype=np.long)
+                                indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)])
                                 for i, n in enumerate(indicators_elements):
                                     indicators[i,n] = 1
 
