@@ -64,7 +64,8 @@ wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_sparse-0.6.16%2Bpt112cu
 pip install torch_sparse-0.6.16+pt112cu113-cp39-cp39-linux_x86_64.whl
 wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_spline_conv-1.2.1%2Bpt112cu113-cp39-cp39-linux_x86_64.whl
 pip install torch_spline_conv-1.2.1+pt112cu113-cp39-cp39-linux_x86_64.whl
-、、、
+```
+
 ### QuickVina 2
 For docking, install QuickVina 2:
 
