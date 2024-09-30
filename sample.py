@@ -363,7 +363,7 @@ if __name__ == '__main__':
                             [atomic_numbers_crossdock[m] for m in torch.argmax(atom_type[:, : ], dim=1)])
                         # print(new_element)
                         indicators_elements = torch.argmax(atom_type[:, num_atom_type:], dim=1)
-                        indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)], dtype=np.long)
+                        indicators = torch.zeros([pos.size(0), len(ATOM_FAMILIES)])
                         for i, n in enumerate(indicators_elements):
                             indicators[i, n] = 1
                         gmol = reconstruct_from_generated(pos, new_element, indicators)
