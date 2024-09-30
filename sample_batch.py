@@ -412,7 +412,7 @@ if __name__ == '__main__':
                                 valid += 1
                                 num_samples -= 1
                                 smile_list.append(g_smile)
-                                print('Successfully generate molecule for {}, remining {} samples generated'.format(
+                                print('Successfully generate molecule for {}, remaining {} samples generated'.format(
                                     pdb_name, num_samples))
 
                             else:
