@@ -344,7 +344,7 @@ if __name__ == '__main__':
                             'mol':gmol,}
                             # 'metric_result':metrics}
                             results.append(result)
-                        logger.info('Successfully generate molecule for {}, remining {} samples generated'.format(pdb_name, num_samples))
+                        logger.info('Successfully generate molecule for {}, remaining {} samples generated'.format(pdb_name, num_samples))
                         mol_list.append(gmol)
                         if num_samples==0:
                             break
