@@ -43,6 +43,28 @@ conda env create -f mol.yml
 # Activate the environment
 conda activate mol
 ```
+
+### PyTorch install
+You could follow the command to install the PyTorch
+```bash
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+```
+
+### Torch_geometric install
+You should install the torch_geometric==2.4.0 and its corresponding dependencies.
+```bash
+pip install torch_geometric==2.4.0
+wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/pyg_lib-0.4.0%2Bpt112cu113-cp39-cp39-linux_x86_64.whl
+pip install pyg_lib-0.4.0+pt112cu113-cp39-cp39-linux_x86_64.whl
+wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_cluster-1.6.0%2Bpt112cu113-cp39-cp39-linux_x86_64.whl
+pip install torch_cluster-1.6.0+pt112cu113-cp39-cp39-linux_x86_64.whl
+wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_scatter-2.1.0%2Bpt112cu113-cp39-cp39-linux_x86_64.whl
+pip install torch_scatter-2.1.0+pt112cu113-cp39-cp39-linux_x86_64.whl
+wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_sparse-0.6.16%2Bpt112cu113-cp39-cp39-linux_x86_64.whl
+pip install torch_sparse-0.6.16+pt112cu113-cp39-cp39-linux_x86_64.whl
+wget https://data.pyg.org/whl/torch-1.12.0%2Bcu113/torch_spline_conv-1.2.1%2Bpt112cu113-cp39-cp39-linux_x86_64.whl
+pip install torch_spline_conv-1.2.1+pt112cu113-cp39-cp39-linux_x86_64.whl
+、、、
 ### QuickVina 2
 For docking, install QuickVina 2:
 
