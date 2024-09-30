@@ -101,7 +101,7 @@ def parse_sdf_file(path):
 
     center_of_mass = np.array(accum_pos / accum_mass, dtype=np.float32)
 
-    element = np.array(element, dtype=np.int32)
+    element = np.array(element, dtype=np.int64)
     pos = np.array(pos, dtype=np.float32)
 
     BOND_TYPES = {t: i for i, t in enumerate(BondType.names.values())}
@@ -118,8 +118,8 @@ def parse_sdf_file(path):
         col += [end, start]
         edge_type += 2 * [bond_type_map[int(bond_line[6:9])]]
 
-    edge_index = np.array([row, col], dtype=np.int32)
-    edge_type = np.array(edge_type, dtype=np.int32)
+    edge_index = np.array([row, col], dtype=np.int64)
+    edge_type = np.array(edge_type, dtype=np.int64)
 
     perm = (edge_index[0] * num_atoms + edge_index[1]).argsort()
     edge_index = edge_index[:, perm]
