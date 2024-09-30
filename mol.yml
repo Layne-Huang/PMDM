@@ -1,4 +1,4 @@
-name: mol_test
+name: mol
 channels:
   - pytorch
   - nvidia
