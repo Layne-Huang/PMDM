@@ -9,7 +9,6 @@ dependencies:
   - _openmp_mutex=4.5=2_kmp_llvm
   - acpype=2022.7.21=pyhd8ed1ab_1
   - ambertools=22.0=py39hcb9d944_3
-  - anndata=0.10.3=pyhd8ed1ab_0
   - appdirs=1.4.4=pyh9f0ad1d_0
   - arpack=3.7.0=hdefa2d7_2
   - array-api-compat=1.4=pyhd8ed1ab_0
