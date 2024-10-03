@@ -85,6 +85,7 @@ conda activate adt
 The pre-trained model (500.pt) could be downloaded from [Zenodo](https://zenodo.org/records/10630921) or [Google Drive](https://drive.google.com/file/d/1Zn8KbumzQ5S_Rc6lb4ezVvydgTeHjzbI/view?usp=drive_link).
 
 ## Benchmarks
+All the dataset files should be put under the data folder.
 ### CrossDocked
 
 #### Data preparation
