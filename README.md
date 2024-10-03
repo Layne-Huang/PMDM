@@ -5,7 +5,7 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
 ## 📢 News
 
 - Our paper is accepted by **Nature Communications** !! (https://doi.org/10.1038/s41467-024-46569-1)
-- If you are interested in generating molecules from scatch (without protein pockets), please refer to our previous work [MDM](https://github.com/tencent-ailab/MDM)
+- If you are interested in generating molecules from scratch (without protein pockets), please refer to our previous work [MDM](https://github.com/tencent-ailab/MDM)
 - Please contact me if you are interested in my work and look for academic collaboration. (layne_huang@outlook.com).
 
 [![biorxiv](https://img.shields.io/badge/biorxiv-526011-AE353A.svg)](https://www.biorxiv.org/content/10.1101/2023.01.28.526011v1.abstract)
