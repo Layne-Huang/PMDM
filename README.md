@@ -14,9 +14,11 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
 <div align="center">  
 <img src="img/model.png" width="600">
 </div>
-<div align="center"> 
+<!-- <div align="center"> 
 <img src="img/traj.gif" alt="GIF" width="400">
-</div>
+</div> -->
+<iframe src="img/animation.html" width="600" height="400" frameborder="0" allowfullscreen></iframe>
+
 
 1. [Dependencies](#dependencies)
    1. [Conda environment](#conda-environment)
