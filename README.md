@@ -14,10 +14,10 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
 <div align="center">  
 <img src="img/model.png" width="600">
 </div>
-<!-- <div align="center"> 
-<img src="img/traj.gif" alt="GIF" width="400">
-</div> -->
-<iframe src="img/animation.html" width="600" height="400" frameborder="0" allowfullscreen></iframe>
+<div align="center"> 
+<img src="img/animation.html" alt="GIF" width="400">
+</div>
+<!-- <iframe src="img/animation.html" width="600" height="400" frameborder="0" allowfullscreen></iframe> -->
 
 
 1. [Dependencies](#dependencies)
