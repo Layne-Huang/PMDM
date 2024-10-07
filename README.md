@@ -17,11 +17,12 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
 
 
 <div align="center">
-<a href="img/traj.html">
+<!-- <a href="img/traj.html"> -->
 <img src="img/traj.gif" width="400">
-</a>
+<!-- </a> -->
 </div>
 
+[Uploading animation.html…]()
 
 
 
