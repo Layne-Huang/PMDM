@@ -15,7 +15,7 @@ Official implementation of **PMDM**, a dual diffusion model enables 3D binding b
 <img src="img/model.png" width="600">
 </div>
 <div align="center"> 
-<img src="img/traj.gif" width="400">
+<img src="img/traj.mov" width="400">
 <!-- <iframe src="img/animation.html" width="600" height="400" frameborder="0" allowfullscreen></iframe> -->
 </div>
 
