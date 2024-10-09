@@ -281,7 +281,7 @@ def parse_sdf_file(path):
 
     center_of_mass = np.array(accum_pos / accum_mass, dtype=np.float32)
 
-    element = np.array(element, dtype=np.int)
+    element = np.array(element, dtype=np.int64)
     pos = np.array(pos, dtype=np.float32)
 
     BOND_TYPES = {t: i for i, t in enumerate(BondType.names.values())}
