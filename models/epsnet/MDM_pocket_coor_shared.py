@@ -722,7 +722,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
                                  n_steps=100, step_lr=0.0000010, clip=1000, clip_local=None, clip_pos=None, min_sigma=0,
                                  is_sidechain=None,
                                  global_start_sigma=float('inf'), local_start_sigma=float('inf'), w_global_pos=0.2,
-                                 w_global_node=0.2, w_local_pos=0.2, w_local_node=0.2, w_reg=1.0, **kwargs):
+                                 w_global_node=0.2, w_local_pos=0.2, w_local_node=0.2, w_reg=1.0,white_noise=True, **kwargs):
 
         def compute_alpha(beta, t):
             beta = torch.cat([torch.zeros(1).to(beta.device), beta], dim=0)
@@ -746,8 +746,13 @@ class MDM_full_pocket_coor_shared(nn.Module):
 
             protein_ori = protein_pos
             protein_com = scatter_mean(protein_pos, protein_batch, dim=0)
-            ligand_pos, protein_pos = center_pos_pl(ligand_pos_init + protein_com[ligand_batch], protein_pos,
+            # ligand_pos_init = center_pos(ligand_pos_init, ligand_batch)
+            if white_noise:
+                ligand_pos, protein_pos = center_pos_pl(ligand_pos_init + protein_com[ligand_batch], protein_pos,
                                                     ligand_batch, protein_batch)
+            else:
+                ligand_pos, protein_pos = center_pos_pl(ligand_pos_init, protein_pos, ligand_batch, protein_batch)
+
             # ligand_pos = center_pos(ligand_pos_init, ligand_batch)
             # pos = center_pos(pos_init* sigmas[-1], batch)
             # pos = center_pos(pos_init, batch)* sigmas[-1] 
@@ -917,7 +922,10 @@ class MDM_full_pocket_coor_shared(nn.Module):
                 ligand_pos, protein_pos = center_pos_pl(ligand_pos, protein_pos, ligand_batch, protein_batch)
                 if clip_pos is not None:
                     ligand_pos = torch.clamp(ligand_pos, min=-clip_pos, max=clip_pos)
-                pos_traj.append(ligand_pos.clone().cpu())
+                protein_t = scatter_mean(protein_pos, protein_batch, dim=0)
+                move_dist = protein_com - protein_t
+                ligand_pos_fix = ligand_pos + move_dist[ligand_batch]
+                pos_traj.append(ligand_pos_fix.clone().cpu())
                 atom_traj.append(ligand_atom_type.clone().cpu())
         protein_final = scatter_mean(protein_pos, protein_batch, dim=0)
         protein_pos = protein_pos + (protein_com - protein_final)[protein_batch]
@@ -951,7 +959,7 @@ class MDM_full_pocket_coor_shared(nn.Module):
             # seq = range(self.num_timesteps-n_steps, self.num_timesteps)
             seq_next = [-1] + list(seq[:-1])
 
-            linker_mask = ~frag_mask
+            linker_mask = ~frag_mask #This is the part that we need to generate
             frag_pos = ligand_pos_init[frag_mask, :]
             ligand_pos = ligand_pos_init
             linker_pos = ligand_pos_init[linker_mask, :]
@@ -1026,6 +1034,10 @@ class MDM_full_pocket_coor_shared(nn.Module):
                 # ligand_atom_type = torch.cat([linker_atom_perturbed,ligand_atom_type[~linker_mask,:]])
                 frag_atom_perturbed = at.sqrt() * frag_atom_type + (1.0 - at).sqrt() * atom_noise * mask
                 ligand_atom_type[frag_mask] = frag_atom_perturbed
+
+                frag_pos_perturbed = frag_pos + pos_noise * (1.0 - at).sqrt() / at.sqrt() * mask
+                ligand_pos[frag_mask] = frag_pos_perturbed
+
                 # ligand_pos,protein_pos = center_pos_pl(ligand_pos, protein_pos, ligand_batch, protein_batch)
                 net_out = self.net(
                     ligand_atom_type=ligand_atom_type,
