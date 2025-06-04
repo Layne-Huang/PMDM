@@ -1,0 +1,5 @@
+**/data/
+**.gz
+**.pyc
+
+**/__pycache__/
