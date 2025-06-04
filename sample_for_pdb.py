@@ -240,6 +240,7 @@ if __name__ == '__main__':
     config = ckpt['config']
     args.cuda = args.cuda and torch.cuda.is_available()
     device = torch.device("cuda" if args.cuda else "cpu")
+    print("Using CUDA:", torch.cuda.is_available(), "on device:", torch.cuda.current_device())
 
     seed_all(config.train.seed)
     log_dir = os.path.join(os.path.dirname(os.path.dirname(args.ckpt)), 'custom_pdb')
