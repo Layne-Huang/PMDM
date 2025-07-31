@@ -108,6 +108,8 @@ python -u sample_for_pdb.py --ckpt <checkpoint> --pdb_path <pdb path> --num_atom
 ```
 `num_atom` is the number of atoms of generated molecules.
 
+if you don't have the pocket pdb but the complex of protein and reference ligand, please run ```bash python split_pocket_ligand.py --path <pdb path> ```. It will automatically extract the pocket for you.
+
 ### Sample novel molecules given seed fragments
 ```bash
 python -u sample_frag.py --ckpt <checkpoint> --pdb_path <pdb path> --mol_file <mole file> --keep_index <seed fragments index> --num_atom <num atom> --num_samples <number of samples> --sampling_type generalized
