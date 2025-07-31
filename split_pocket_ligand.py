@@ -4,14 +4,15 @@ from rdkit import Chem
 from rdkit.Chem import rdmolops
 from oddt.toolkits.extras.rdkit import fixer
 from openbabel import pybel
+import argparse
 
 '''
 obtain pocket and ligand from the complex file
 '''
 
-def split_pocket_ligand(path):
+def split_pocket_ligand(path,cutoff=20):
     root = os.path.dirname(path)
-    pdb_code = os.path.basename(path)[:4]+'cut20'
+    pdb_code = os.path.basename(path)[:4]+f'cut{cutoff}'
     root = os.path.join(root,pdb_code)
     os.makedirs(root, exist_ok=True)
     complex_ = Chem.MolFromPDBFile(path, sanitize=False)
@@ -39,13 +40,10 @@ def split_pocket_ligand(path):
         print('error when loading data')
 
 if __name__ == '__main__':
-    path = './data/7l11.pdb'
-    split_pocket_ligand(path)
-    # ligand_path = '/./data/crossdocked_pocket10/DYR_STAAU_2_158_0/4xe6_X_rec_3fqc_55v_lig_tt_docked_4.sdf'
-    # ligand_path =  './data/crossdocked_pocket10/LAT_MYCTU_1_449_0/2jjg_A_rec_2jjg_plp_lig_tt_min_0.sdf'
-    # suppl = Chem.SDMolSupplier(ligand_path)
-    # mols = [Chem.MolToSmiles(mol) for mol in suppl if mol]
-    # print(mols)
-    # atom_num = suppl[0].GetNumAtoms()
-    # print(atom_num)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path', type=str, default='data/3UG2.pdb', help='path to the complex pdb file')
+    # path = 'data/3GU2.pdb'
+    args = parser.parse_args()
+    split_pocket_ligand(args.path,cutoff=10)
+
 
